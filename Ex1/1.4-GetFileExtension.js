@@ -1,5 +1,9 @@
+// 4. Write the function get the get the Extension of file:
+// “image.png” => “png”. “Sound.mp3” => “mp3”
+
 function getFileExtension(fileName) {
-const [_, result ] = fileName.split('.')
-return result
+  const [name, extension] = fileName.split('.');
+  return extension;
 }
-console.log(getFileExtension('abc.mp3'))
+
+console.log(getFileExtension('Sound.mp3'));
