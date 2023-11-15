@@ -1,5 +1,3 @@
-// 1. convert to Roman number: n integer < 1,000
-// const sym = ["I","IV","V","IX","X","XL","L","XC","C","CD","D","CM"];
 function integerToRoman(n) {
   const dividends = [1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900];
   const sym = ["I","IV","V","IX","X","XL","L","XC","C","CD","D","CM"];
@@ -12,7 +10,7 @@ function integerToRoman(n) {
       n = n % dividends[i];
     }
   }
-  
+
   return result;
 }
 

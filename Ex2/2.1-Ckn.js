@@ -1,4 +1,3 @@
-// 1. Write the function to calculate the combination (Ckn)
 function calcCombination(k, n) {
   return calcFactorial(n) / (calcFactorial(k) * calcFactorial(n - k));
 }

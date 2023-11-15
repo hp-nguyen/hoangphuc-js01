@@ -1,6 +1,3 @@
-// 4. Given two arrays of integers,
-// find which elements in the second array are missing from the first array.
-
 function findMissingItems(arr1, arr2) {
   const result = arr1.filter(item => !arr2.includes(item));
   return result;

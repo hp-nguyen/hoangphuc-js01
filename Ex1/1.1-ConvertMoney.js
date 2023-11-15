@@ -10,7 +10,7 @@ function convertMoney(money) {
   }
   if (decimalPart) result = result + '.' + decimalPart;
   return result;
-} // Em đã rút gọn < 15 dòng theo lời dặn của a :D:D:D
+}
 
 console.log(convertMoney(1234567.000002));
 console.log(convertMoney(1234567));

@@ -1,5 +1,3 @@
-// 3. Write the function get a random element from an arrays.
-
 function randomNum(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
