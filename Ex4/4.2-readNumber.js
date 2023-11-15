@@ -92,13 +92,13 @@ function hangVan(n) {
     const div = Math.floor(n / dividends[i]);
     if (div >= 1) {
       if (i === 1 && div > 1) {
-        temp = nums[div] + ' ' + units[i][1];
-      }
-      if (i === 1 && div === 1) {
+        temp = nums[div] + ' ' + units[i][1] + ' ';
+      } else if (i === 1 && div === 1) {
         temp = units[i][0];
       } else temp = nums[div];
       result += temp;
       temp = '';
+      n = n % dividends[i];
     }
   }
   return result + ' vạn ';
