@@ -1,3 +1,32 @@
+function readNumber(number) {
+  const nums = [
+    'không',
+    'một',
+    'hai',
+    'ba',
+    'bốn',
+    'năm',
+    'sáu',
+    'bảy',
+    'tám',
+    'chín',
+    'mười',
+  ];
+  const dividends = [1, 10, 100, 10000];
+  const units = [0, 0, 0, 0];
+  if (number <= 10) return nums[number];
+  for (let i = dividends.length - 1; i >= 0; i--) {
+    const div = Math.floor(number / dividends[i]);
+    if (div >= 1) {
+      units[i] = div;
+      number = number % dividends[i];
+    }
+  }
+  const [dv, chuc, ngan, van] = units;
+  const result =
+    hangVan(van) + hangNgan(ngan) + ' ' + hangChuc(chuc) + hangDv(dv);
+  return result.trim();
+}
 function hangChuc(n) {
   const dividends = [0.1, 1];
   const units = ['linh', ['mười', 'mươi']];
@@ -103,37 +132,7 @@ function hangVan(n) {
   }
   return result + ' vạn ';
 }
-function readNumber(number) {
-  const nums = [
-    'không',
-    'một',
-    'hai',
-    'ba',
-    'bốn',
-    'năm',
-    'sáu',
-    'bảy',
-    'tám',
-    'chín',
-    'mười',
-  ];
-  const dividends = [1, 10, 100, 10000];
-  const units = [0, 0, 0, 0];
-  if (number <= 10) return nums[number];
-  for (let i = dividends.length - 1; i >= 0; i--) {
-    const div = Math.floor(number / dividends[i]);
-    if (div >= 1) {
-      units[i] = div;
-      number = number % dividends[i];
-    }
-  }
-  const [dv, chuc, ngan, van] = units;
-  const textHangDv = hangDv(dv);
-  const textHangChuc = hangChuc(chuc) + ' ';
-  const textHangNgan = hangNgan(ngan) + ' ';
-  const textHangVan = hangVan(van);
-  return textHangVan + textHangNgan + textHangChuc + textHangDv;
-}
+
 console.log(readNumber(12));
 console.log(readNumber(6));
 console.log(readNumber(12));
