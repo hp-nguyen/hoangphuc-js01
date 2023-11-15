@@ -11,32 +11,44 @@
 // [0,0,0], [0,0,2]
 // []
 function getAllWay(table) {
-  const allWays = [];
-  let tempWay = [];
-
+  const allWays = [[]];
+  let tempWays = [[]];
+  let tempSafeCells = [];
   for (const col of table) {
-    const safePositions = col.reduce((result, curValue, i) => {
-      if (curValue === 0) result.push(i);
-      return result;
-    }, []);
-    const safePosCount = safePositions.length;
-    // console.log(safePositions, safePosCount);
-    if (safePosCount === 1) {
-      tempWay.push(safePositions[0]);
-      allWays.push(tempWay);
-    } else {
-      for (const safePos of safePositions) {
-        const newWay = tempWay.slice();
-        newWay.push(safePos);
-        // console.log(newWay)
+    // Save prev allWays
+    tempWays = allWays.map(way => [...way]);
+    // Reset allWays
+    allWays.length = 0;
+    // Loop through cells of current column to collect all safe cells
+    let hasSafeCell = 0;
+    for (index in col) {
+      if (col[index] === 0) {
+        tempSafeCells.push(index);
+        hasSafeCell++;
       }
     }
+    // Check if current column has any safe cells
+    if (!hasSafeCell) return 'No safe ways found';
+    // Transfer all newWay to allWays
+    for (const i in tempSafeCells) {
+      for (const tempWay of tempWays) {
+        const newWay = [...tempWay]; // Clone current tempWay
+        newWay.push(tempSafeCells[i]); // Add new safeCell
+        allWays.push(newWay); // Push newWay to allWays
+      }
+    }
+    // Reset tempSafeCells after every column loop
+    tempSafeCells.length = 0;
   }
+  return allWays;
 }
-getAllWay([
-  [0, 1, 1],
-  [0, 1, 1],
-  [0, 1, 1],
-  [0, 1, 1],
-  [0, 0, 1],
-]);
+
+console.log(
+  getAllWay([
+    [0, 1, 1],
+    [0, 1, 1],
+    [0, 1, 0],
+    [0, 1, 1],
+    [0, 0, 1],
+  ])
+);
