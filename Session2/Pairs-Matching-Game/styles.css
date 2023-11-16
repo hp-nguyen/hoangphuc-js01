@@ -1,0 +1,38 @@
+/* CSS RESET */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+/* Container */
+#container {
+  display: grid;
+  grid-template-columns: repeat(5, 150px);
+  gap: 20px;
+  /* border: 5px solid #fd0606; */
+}
+.card {
+  position: relative;
+  /* border: 5px solid #000; */
+  width: 100%;
+  cursor: pointer;
+}
+.card-cover {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
