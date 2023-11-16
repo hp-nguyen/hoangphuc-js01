@@ -20,14 +20,11 @@ body {
 /* Container */
 #container {
   display: grid;
-  grid-template-columns: repeat(5, 150px);
+  grid-template-columns: repeat(5, 100px);
   gap: 20px;
-  /* border: 5px solid #fd0606; */
 }
 .card {
   position: relative;
-  /* border: 5px solid #000; */
-  width: 100%;
   cursor: pointer;
 }
 .card-cover {
