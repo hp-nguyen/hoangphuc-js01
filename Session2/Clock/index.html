@@ -3,10 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="./styles.css" />
+    <title>Clock</title>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+      body {
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        height: 100vh;
+        gap: 48px;
+        background-color: #343a40;
+        font-family: 'Poppins', sans-serif;
+      }
     </style>
   </head>
   <body>
@@ -14,8 +22,7 @@
       <div id="second" class="hand"></div>
       <div id="minute" class="hand"></div>
       <div id="hour" class="hand"></div>
-      <div id="center">
-      </div>
+      <div id="center-point"></div>
     </div>
     <div id="digital-clock">
       <div id="time"></div>
