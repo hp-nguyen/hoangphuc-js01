@@ -11,19 +11,46 @@ const baseItems = [
   { id: 10, src: './assets/10.png' },
 ];
 const copyItems = baseItems.map(item => ({ ...item }));
-const gameItems = copyItems.concat(copyItems);
-const pairsAmount = baseItems.length;
+let gameItems = copyItems.concat(copyItems);
+const totalPairs = baseItems.length;
 let currentPick = [];
 let pairsMatchedCount = 0;
 const body = document.body;
-const containerEl = document.getElementById('container');
-const messageElement = document.createElement('div');
-Object.assign(messageElement.style, {
-  'font-size': '3rem',
-  'margin-bottom': '24px',
-  color: 'red',
-});
-body.prepend(messageElement);
+const gameContainerEl = document.getElementById('gameContainer');
+const messageElement = document.getElementById('message');
+
+const stateContainer = document.createElement('div');
+stateContainer.innerHTML = ``;
+const coinAmountEl = document.getElementById('coin-amount');
+const states = {
+  isPlaying: true,
+  coinAmountEl,
+  messageElement,
+  coin: 3000,
+  initCoinAmount() {
+    coinAmountEl.innerText = this.coin;
+  },
+  updateCoinAmount(data) {
+    if (data === 'up') {
+      this.coin += 500;
+      coinAmountEl.innerText = this.coin;
+    }
+    if (data === 'down') {
+      this.coin -= 500;
+      coinAmountEl.innerText = this.coin;
+    }
+  },
+  checkPlaying() {
+    if (this.coin === 0) {
+      this.isPlaying = false;
+      return false;
+    }
+    return true;
+  },
+};
+
+states.initCoinAmount();
+shuffleItems();
 for (const i in gameItems) {
   const cardElement = document.createElement('div');
   cardElement.classList.add('card');
@@ -41,7 +68,7 @@ for (const i in gameItems) {
     display: 'flex',
     'align-items': 'center',
     'justify-content': 'center',
-    'font-size': '3.6em',
+    'font-size': '2.5em',
     color: 'aliceblue',
     position: 'absolute',
     top: '0',
@@ -53,12 +80,10 @@ for (const i in gameItems) {
 
   cardElement.appendChild(cardCoverElement);
   cardElement.appendChild(cardContentElement);
-  containerEl.appendChild(cardElement);
+  gameContainerEl.appendChild(cardElement);
 }
-
-const cardEls = containerEl.getElementsByClassName('card');
-
 function onClickHandler(e) {
+  if (!states.isPlaying) return
   const cardEl = e.currentTarget;
   const cardCoverEl = cardEl.querySelector('.card-cover');
   cardCoverEl.style.visibility = 'hidden';
@@ -67,10 +92,17 @@ function onClickHandler(e) {
     if (isPairMatch()) {
       currentPick.forEach(cardData => cardData.card.removeEventListener('click', onClickHandler));
       pairsMatchedCount++;
+      states.updateCoinAmount('up');
       if (isWin()) {
-        messageElement.innerText = 'You win!!!';
+        states.messageElement.style.color = 'yellow';
+        states.messageElement.innerText = 'You win!!!';
       }
     } else {
+      states.updateCoinAmount('down');
+      if (!states.checkPlaying()) {
+        states.messageElement.style.color = 'red';
+        states.messageElement.innerText = 'You lose :(((';
+      }
       resetCardCover();
     }
     resetCurrentPick();
@@ -104,6 +136,21 @@ function resetCardCover() {
   }, 1000);
 }
 function isWin() {
-  if (pairsMatchedCount === pairsAmount) return true;
+  if (pairsMatchedCount === totalPairs) return true;
   return false;
+}
+
+function randomNum(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function shuffleItems() {
+  const temp = [];
+  let currentLength = gameItems.length;
+  while (currentLength > 0) {
+    const currentIndex = randomNum(0, currentLength - 1);
+    temp.push(gameItems.splice(currentIndex, 1)[0]);
+    currentLength = gameItems.length;
+  }
+  gameItems = temp;
 }

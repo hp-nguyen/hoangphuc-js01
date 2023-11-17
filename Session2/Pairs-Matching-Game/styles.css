@@ -16,12 +16,18 @@ body {
   align-items: center;
   height: 100vh;
   flex-direction: column;
+  background-color: #343a40;
 }
 /* Container */
-#container {
+#state-Container {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+#gameContainer {
   display: grid;
   grid-template-columns: repeat(5, 100px);
-  gap: 20px;
+  gap: 10px;
 }
 .card {
   position: relative;
@@ -32,4 +38,9 @@ body {
   top: 0;
   width: 100%;
   height: 100%;
+}
+#state-Container {
+  color: #fff;
+  font-size: 2rem;
+  align-self: flex-start;
 }
