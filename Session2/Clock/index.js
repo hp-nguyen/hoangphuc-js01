@@ -15,9 +15,9 @@ const handStyles = {
   position: 'absolute',
   top: '50%',
   left: '50%',
-  transform: 'translateY(-50%) rotate(-90deg)',
-  'border-radius': '100% 12px 12px 100%',
+  transform: 'translateY(-50%)',
   'transform-origin': '0 0',
+  'border-radius': '100% 12px 12px 100%',
   'box-shadow': '0 0 5px 0px #fff',
 };
 Object.assign(clockEl.style, {
@@ -88,9 +88,9 @@ const clock = {
   minHandEl,
   hrHandEl,
   getHandDegs() {
-    this.secHandDeg = nowDateTime.sec * 6;
-    this.minHandDeg = nowDateTime.min * 6 + (nowDateTime.sec * 6) / 60;
-    this.hrHandDeg = (nowDateTime.hr - 12) * 30 + (nowDateTime.min * 30) / 60;
+    this.secHandDeg = nowDateTime.sec * 6 -90;
+    this.minHandDeg = nowDateTime.min * 6 + (nowDateTime.sec * 6) / 60 -90;
+    this.hrHandDeg = (nowDateTime.hr - 12) * 30 + (nowDateTime.min * 30) / 60 -90;
   },
   updateHandsPos() {
     secHandEl.style.rotate = this.secHandDeg + 'deg';
