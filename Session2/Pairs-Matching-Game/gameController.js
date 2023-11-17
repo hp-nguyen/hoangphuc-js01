@@ -1,6 +1,6 @@
 const states = {
   isPlaying: true,
-  coin: 3000,
+  coin: 10000,
   updateCoinAmount(data) {
     if (data === 'up') {
       this.coin += 500;
@@ -21,10 +21,11 @@ const states = {
 
 gameBoard.initGame();
 function resetGame() {
-  gameContainerEl.innerHTML=''
-  gameBoard.initGame.call(gameBoard);
+  gameContainerEl.innerHTML = '';
   states.isPlaying = true;
   states.coin = 10000;
+  messageElement.innerText = '';
+  gameBoard.initGame();
 }
 
-resetBtn.addEventListener('click', resetGame)
+resetBtn.addEventListener('click', resetGame);

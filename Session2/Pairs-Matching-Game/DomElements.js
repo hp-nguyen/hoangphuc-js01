@@ -1,5 +1,5 @@
 const body = document.body;
-const gameContainerEl = document.getElementById('gameContainer');
+const gameContainerEl = document.getElementById('game-container');
 const messageElement = document.getElementById('message');
 const stateContainerEl = document.getElementById('state-container');
 const coinAmountEl = document.getElementById('coin-amount');

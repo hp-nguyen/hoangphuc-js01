@@ -19,7 +19,9 @@ const gameBoard = {
   pairsMatchedCount: 0,
   initGame() {
     this.pairsMatchedCount = 0;
-    this.renderCoinAmount(), this.shuffleItems(), this.renderItems();
+    this.renderCoinAmount();
+    this.shuffleItems();
+    this.renderItems();
   },
   shuffleItems() {
     const temp = [];
