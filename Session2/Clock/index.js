@@ -11,7 +11,7 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 const handStyles = {
   'background-color': '#fff',
   width: '40%',
-  height: '1.5%',
+  height: '1%',
   position: 'absolute',
   top: '50%',
   left: '50%',
