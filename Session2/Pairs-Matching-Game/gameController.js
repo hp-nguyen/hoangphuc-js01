@@ -3,7 +3,7 @@ const states = {
   coin: 10000,
   updateCoinAmount(data) {
     if (data === 'up') {
-      this.coin += 500;
+      this.coin += 1000;
     }
     if (data === 'down') {
       this.coin -= 500;

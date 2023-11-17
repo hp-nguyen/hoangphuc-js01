@@ -15,7 +15,7 @@ const handStyles = {
   position: 'absolute',
   top: '50%',
   left: '50%',
-  transform: 'translateY(-50%)',
+  transform: 'translateY(-50%) rotate(-90deg)',
   'border-radius': '100% 12px 12px 100%',
   'transform-origin': '0 0',
   'box-shadow': '0 0 5px 0px #fff',
@@ -45,7 +45,6 @@ Object.assign(secHandEl.style, {
 });
 Object.assign(minHandEl.style, {
   ...handStyles,
-  width: '33%',
 });
 Object.assign(hrHandEl.style, {
   ...handStyles,
@@ -82,24 +81,21 @@ const nowDateTime = {
   },
 };
 const clock = {
-  secHandRotateDeg: 0,
-  minHandRotateDeg: 0,
-  hrHandRotateDeg: 0,
+  secHandDeg: 0,
+  minHandDeg: 0,
+  hrHandDeg: 0,
   secHandEl,
   minHandEl,
   hrHandEl,
-  initHandDegs() {
-    this.secHandRotateDeg = nowDateTime.sec * 6 - 90;
-    this.minHandRotateDeg = nowDateTime.min * 6 - 90;
-    this.hrHandRotateDeg = ((nowDateTime.hr - 12) * 360) / 12 - 90;
+  getHandDegs() {
+    this.secHandDeg = nowDateTime.sec * 6;
+    this.minHandDeg = nowDateTime.min * 6 + (nowDateTime.sec * 6) / 60;
+    this.hrHandDeg = (nowDateTime.hr - 12) * 30 + (nowDateTime.min * 30) / 60;
   },
   updateHandsPos() {
-    secHandEl.style.rotate = this.secHandRotateDeg + 'deg';
-    this.secHandRotateDeg += 6;
-    minHandEl.style.rotate = this.minHandRotateDeg + 'deg';
-    this.minHandRotateDeg += 0.1;
-    hrHandEl.style.rotate = this.hrHandRotateDeg + 'deg';
-    this.hrHandRotateDeg += 360 / 24 / 60 / 60;
+    secHandEl.style.rotate = this.secHandDeg + 'deg';
+    minHandEl.style.rotate = this.minHandDeg + 'deg';
+    hrHandEl.style.rotate = this.hrHandDeg + 'deg';
   },
 };
 const digitalClock = {
@@ -113,12 +109,13 @@ const digitalClock = {
   },
 };
 nowDateTime.getNowTimes();
-clock.initHandDegs();
+clock.getHandDegs();
 clock.updateHandsPos();
 digitalClock.setTime();
 
 setInterval(() => {
   nowDateTime.getNowTimes();
+  clock.getHandDegs();
   clock.updateHandsPos();
   digitalClock.setTime();
 }, 1000);
