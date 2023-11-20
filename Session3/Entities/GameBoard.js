@@ -12,9 +12,8 @@ class GameBoard extends Node {
     let curCol = 0;
     const gap = 12;
     for (let index = 0; index < this.gameItems.length; index++) {
-      const newCard = new Card(this.gameItems[index].src, index);
+      const newCard = new Card(this.gameItems[index].src, this.gameItems[index].id, index);
       newCard.setSize(100, 100);
-      // newCard.element.addEventListener('click', newCard.showContent.bind(newCard))
       curRow = index % 5 === 0 ? curRow + 1 : curRow;
       curCol = index % 5;
       newCard.x = curCol * (newCard._size.width + gap);

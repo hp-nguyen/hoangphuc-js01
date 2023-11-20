@@ -2,22 +2,23 @@ import Node from '../Engine/Node.js';
 import Sprite from '../Engine/Sprite.js';
 
 class Card extends Node {
-  constructor(imgSrc, index) {
+  constructor(imgSrc, id, index) {
     super();
+    this.element.dataset.id = id;
+    this.element.dataset.index = index;
     this.cardContent = this.createCardContent(imgSrc);
     this.cardCover = this.createCardCover(cardCoverStyles, index);
     this.setStyle({
       position: 'absolute',
       backgroundColor: '#fff',
-      border: '3px solid #3bc9db'
+      border: '3px solid #3bc9db',
+      cursor: 'pointer',
     });
-
   }
   createCardCover(styles, index) {
     const cardCover = new Node();
     cardCover.setStyle(styles);
     cardCover.element.innerText = index + 1;
-    cardCover.element.dataset.id = index;
     this.addChild(cardCover);
     return cardCover;
   }
@@ -28,10 +29,10 @@ class Card extends Node {
   showContent() {
     // console.log('click')
     // console.log(this)
-    this.cardCover.element.style.display = 'none';
+    this.cardCover.element.style.visibility = 'hidden';
   }
   hideContent() {
-    this.cardCover.element.style.display = 'block';
+    this.cardCover.element.style.visibility = 'initial';
   }
 }
 
