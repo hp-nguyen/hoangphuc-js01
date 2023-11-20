@@ -4,8 +4,9 @@ export class Node {
   constructor() {
     this._x = 0;
     this._y = 0;
-    this._width = 100;
-    this._height = 100;
+    this._width = 300;
+    this._height = 300;
+    this.scaleX = 1;
     this.elm = this._createElement();
     this.children = [];
   }
@@ -30,8 +31,8 @@ export class Node {
     let elm = document.createElement('div');
     elm.style.position = 'absolute';
     Object.assign(elm.style, {
-      width: '100px',
-      height: '100px',
+      width: '300px',
+      height: '300px',
       'backgroundColor': 'black',
     });
     const body = document.body;
@@ -46,13 +47,5 @@ export class Node {
     // todo
   }
 }
-const box = new Node();
 
-const width = window.innerWidth;
-const height = window.innerHeight;
-
-const spaceW = width - box._width
-const spaceH = height - box._height
-box.x = spaceW/2
-box.y = spaceH/2
 
