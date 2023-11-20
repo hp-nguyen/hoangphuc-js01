@@ -1,39 +1,35 @@
-import { Node } from './Node.js';
-const card = new Node();
-
-const width = window.innerWidth;
-const height = window.innerHeight;
-
-const spaceW = width - card._width;
-const spaceH = height - card._height;
-card.x = spaceW / 2;
-card.y = spaceH / 2;
-
-let lastTime = 0;
-function gameLoop(timeStamp) {
-  const dt = (timeStamp - lastTime) / 1000;
-  lastTime = timeStamp;
-  // console.log(dt);
-  let isFlliped = false;
-  draw(dt);
-  window.requestAnimationFrame(gameLoop);
+import Node from './Node.js';
+import Sprite from './Sprite.js';
+const body = document.body;
+class Card extends Node {
+  constructor(index) {
+    super();
+    this.cardContent = new Sprite('./assets/1.png');
+    this.cardCover = new CardCover(cardCoverStyles, index);
+    this.addChild(this.cardContent.element);
+    this.addChild(this.cardCover.element);
+    this.element.style.position = 'absolute';
+  }
 }
-function draw(dt) {
-  let isOverMiddle = false;
-  let isFlipped = false;
-  let isDone = false;
-  // if (card.scaleX > 1) return;
-  if (card.scaleX <= 0) isOverMiddle = true;
-  if (card.scaleX >1) isDone = true;
-  console.log(card.scaleX);
-
-  if (!isOverMiddle && !isDone) {
-    card.scaleX -= dt * 1;
-    card.elm.style.transform = `scaleX(${card.scaleX})`;
-  } else if (isOverMiddle && !isDone) {
-    card.elm.style.backgroundColor = 'red';
-    card.scaleX += dt * 1;
-    card.elm.style.transform = `scaleX(${card.scaleX})`;
-  } 
+class CardCover extends Node {
+  constructor(styles, index) {
+    super();
+    this.setStyle(styles);
+    this.element.innerText = index + 1;
+    this.element.dataset.id = index;
+  }
 }
-// window.requestAnimationFrame(gameLoop)
+
+const cardCoverStyles = {
+  'background-color': '#1c7ed6',
+  display: 'flex',
+  'align-items': 'center',
+  'justify-content': 'center',
+  'font-size': '2.5em',
+  color: 'aliceblue',
+  position: 'absolute',
+  top: '0',
+  width: '100%',
+  height: '100%',
+};
+export default Card;

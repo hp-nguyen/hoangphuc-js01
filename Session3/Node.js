@@ -1,13 +1,11 @@
-export class Node {
+export default class Node {
   // entity
-
   constructor() {
     this._x = 0;
     this._y = 0;
-    this._width = 300;
-    this._height = 300;
-    this.scaleX = 1;
-    this.elm = this._createElement();
+    this._size = { width: 0, height: 0 };
+    this._scaleX = 1;
+    this.element = this._createElement();
     this.children = [];
   }
 
@@ -16,7 +14,7 @@ export class Node {
   }
   set x(value) {
     this._x = value;
-    this.elm.style.left = this._x + 'px';
+    this.element.style.left = this._x + 'px';
   }
 
   get y() {
@@ -24,28 +22,44 @@ export class Node {
   }
   set y(value) {
     this._y = value;
-    this.elm.style.top = this._y + 'px';
+    this.element.style.top = this._y + 'px';
   }
 
   _createElement() {
-    let elm = document.createElement('div');
-    elm.style.position = 'absolute';
-    Object.assign(elm.style, {
-      width: '300px',
-      height: '300px',
-      'backgroundColor': 'black',
-    });
     const body = document.body;
-    body.appendChild(elm);
+    const elm = document.createElement('div');
+    elm.style.position = 'relative';
     return elm;
   }
-
-  addChild(node) {
-    // todo
+  setSize(width, height) {
+    this._size.width = width;
+    this._size.height = height;
+    Object.assign(this.element.style, {
+      width: width + 'px',
+      height: height + 'px',
+    });
   }
-  removeChild(node) {
-    // todo
+  setStyle(styles) {
+    Object.assign(this.element.style, styles);
+  }
+  centerInPage() {
+    const wdWidth = window.innerWidth;
+    const wdHeight = window.innerHeight;
+    const spaceW = wdWidth - this._size.width;
+    const spaceH = wdHeight - this._size.height;
+    this.x = spaceW / 2;
+    this.y = spaceH / 2;
+  }
+  addChild(child) {
+    child.parent = this;
+    this.children.push(child);
+    this.element.appendChild(child);
+  }
+  removeChild(child) {
+    const index = this.children.indexOf(child);
+    if (index > -1) {
+      child.parent = null;
+      this.children.splice(index, 1);
+    }
   }
 }
-
-
