@@ -7,6 +7,7 @@ export default class Node {
     this._scaleX = 1;
     this.element = this._createElement();
     this.children = [];
+    this.parent = null;
   }
 
   get x() {
@@ -26,7 +27,6 @@ export default class Node {
   }
 
   _createElement() {
-    const body = document.body;
     const elm = document.createElement('div');
     elm.style.position = 'relative';
     return elm;
@@ -42,24 +42,23 @@ export default class Node {
   setStyle(styles) {
     Object.assign(this.element.style, styles);
   }
-  centerInPage() {
-    const wdWidth = window.innerWidth;
-    const wdHeight = window.innerHeight;
-    const spaceW = wdWidth - this._size.width;
-    const spaceH = wdHeight - this._size.height;
-    this.x = spaceW / 2;
-    this.y = spaceH / 2;
+  centerInWindow() {
+    const translationDistanceX = (window.innerWidth - this._size.width) / 2;
+    const translationDistanceY = (window.innerHeight - this._size.height) / 2;
+    this.x += translationDistanceX;
+    this.y += translationDistanceY;
   }
-  addChild(child) {
-    child.parent = this;
-    this.children.push(child);
-    this.element.appendChild(child);
+  addChild(entity) {
+    entity.parent = this;
+    this.children.push(entity);
+    this.element.appendChild(entity.element);
   }
-  removeChild(child) {
-    const index = this.children.indexOf(child);
+  removeChild(entity) {
+    const index = this.children.indexOf(entity);
     if (index > -1) {
-      child.parent = null;
+      entity.parent = null;
       this.children.splice(index, 1);
+      entity.element.remove();
     }
   }
 }
