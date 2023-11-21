@@ -27,8 +27,8 @@ function handleClick(e) {
   cardEntity.showContent();
   updateCurPicks(cardEntity, cardEl.dataset.id, cardEl.dataset.index);
   if (checkPairPicked()) {
-    updateHandleClick('remove');
     if (checkPairMatch()) {
+      updateHandleClick('remove');
       curPicks.forEach(cardData => {
         const cardEntity = cardData.cardEntity;
         cardEntity.element.style.zIndex = '1';
@@ -38,13 +38,17 @@ function handleClick(e) {
       updateCoinAmount('up');
       coinsLabel.setText(`Coins: ${coins}`);
       if (checkWin()) {
-        alert('YOU WIN !!!');
+        setTimeout(() => {
+          alert('YOU WIN !!!');
+        }, 3000);
       }
     } else {
       updateCoinAmount('down');
       coinsLabel.setText(`Coins: ${coins}`);
       if (checkLose()) {
-        alert('YOU LOSE :(');
+        setTimeout(() => {
+          alert('YOU LOSE :(');
+        }, 1000);
       }
       hideCards();
       return;
@@ -82,7 +86,7 @@ function hideCards() {
   setTimeout(() => {
     cardData1.cardEntity.hideContent();
     cardData2.cardEntity.hideContent();
-    updateHandleClick('add');
+    // updateHandleClick('add');
     resetCurPicks();
   }, 2000);
 }
