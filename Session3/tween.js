@@ -1,21 +1,54 @@
-function shuffleEntities(entities) {
-  const positions = [];
-  for (let row = 0; row < 4; row++) {
-    for (let col = 0; col < 5; col++) {
-      const x = col * 110;
-      const y = row * 110;
-      positions.push({ x, y });
-    }
+function shuffleEntities(gameBoard, entities) {
+  const gameBoardSize = gameBoard._size;
+  const cardEntitySize = gameBoard.children[0]._size;
+  const xCenter = (gameBoardSize.width - cardEntitySize.width) / 2;
+  const yCenter = (gameBoardSize.height - cardEntitySize.height) / 2;
+  const entityGap = 12;
+
+  for (let index = entities.length - 1; index >= 0; index--) {
+    gsap.fromTo(
+      entities[index].element,
+      {
+        x: xCenter,
+        y: yCenter,
+        opacity: 0,
+      },
+      {
+        duration: 0.1,
+        x: xCenter,
+        y: yCenter,
+        ease: 'power2.inOut',
+        delay: index * 0.1,
+        opacity: 1,
+      }
+    );
   }
 
-  entities.forEach((entity, index) => {
-    const { x, y } = positions[index];
-    gsap.fromTo(
-      entity.element,
-      // { x: (gameBoardSize.width - cardEntitySize.width) / 2, y: (gameBoardSize.height - cardEntitySize.height) / 2, opacity: 1 },
-      { x: 210, y: 160 },
-      { duration: 1, x, y, opacity: 1, ease: 'power2.inOut', delay: index * 0.1, rotate: 360 }
-    );
-  });
+  setTimeout(() => {
+    dealCards();
+  }, 2000);
+
+  function dealCards() {
+    const positions = [];
+    for (let row = 0; row < 4; row++) {
+      for (let col = 0; col < 5; col++) {
+        const x = col * (cardEntitySize.width + entityGap);
+        const y = row * (cardEntitySize.height + entityGap);
+        positions.push({ x, y });
+      }
+    }
+
+    entities.forEach((entity, index) => {
+      const { x, y } = positions[index];
+      gsap.fromTo(
+        entity.element,
+        {
+          x: xCenter,
+          y: yCenter,
+        },
+        { duration: 1, x, y, ease: 'power2.inOut', delay: index * 0.1, rotate: 360 }
+      );
+    });
+  }
 }
 export { shuffleEntities };
