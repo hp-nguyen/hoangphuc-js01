@@ -16,8 +16,8 @@ class GameBoard extends Node {
       newCard.setSize(100, 100);
       curRow = index % 5 === 0 ? curRow + 1 : curRow;
       curCol = index % 5;
-      newCard.x = curCol * (newCard._size.width + gap);
-      newCard.y = curRow * (newCard._size.height + gap);
+      // newCard.x = curCol * (newCard._size.width + gap);
+      // newCard.y = curRow * (newCard._size.height + gap);
       this.addChild(newCard);
     }
     body.appendChild(this.element);

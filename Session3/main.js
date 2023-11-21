@@ -1,4 +1,6 @@
-import { gameBoard, initGame } from "./gameController.js";
+import { gameBoard, initGame } from './gameController.js';
+import { shuffleEntities } from './tween.js';
 
-initGame()
-// gameBoard.children[0].flip()
+const cardEntities = gameBoard.children;
+initGame();
+shuffleEntities(cardEntities)

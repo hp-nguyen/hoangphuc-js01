@@ -30,9 +30,12 @@ function handleClick(e) {
     updateHandleClick('remove');
     if (checkPairMatch()) {
       curPicks.forEach(cardData => {
+        const cardEntity = cardData.cardEntity
+        cardEntity.element.style.zIndex = '1'
+        cardEntity.zoom()
         setTimeout(() => {
-          cardData.cardEntity.element.style.display = 'none';
-        }, 1000);
+          cardEntity.element.style.display = 'none';
+        }, 2000);
       });
       pairsMatchedCount++;
       updateCoinAmount('up');
@@ -88,7 +91,7 @@ function hideCards() {
     cardData2.cardEntity.hideContent();
     updateHandleClick('add');
     resetCurPicks();
-  }, 4000);
+  }, 2000);
 }
 
 function checkWin() {

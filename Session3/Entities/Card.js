@@ -28,6 +28,7 @@ class Card extends Node {
   }
   showContent() {
     const duration = 0.5;
+    const delay = 0.5;
     gsap.to(this.element, {
       scaleX: 0,
       duration,
@@ -35,10 +36,11 @@ class Card extends Node {
         this.cardCover.element.style.visibility = 'hidden';
       },
     });
-    gsap.to(this.element, { scaleX: 1, duration, delay: duration });
+    gsap.to(this.element, { scaleX: 1, duration, delay });
   }
   hideContent() {
     const duration = 0.5;
+    const delay = 0.5;
     gsap.to(this.element, {
       scaleX: 0,
       duration,
@@ -46,19 +48,15 @@ class Card extends Node {
         this.cardCover.element.style.visibility = 'initial';
       },
     });
-    gsap.to(this.element, { scaleX: 1, duration, delay: duration });
-    // this.cardCover.element.style.visibility = 'initial';
+    gsap.to(this.element, { scaleX: 1, duration, delay });
   }
-  flip() {
-    const duration = 2;
+  zoom() {
     gsap.to(this.element, {
-      scaleX: 0,
-      duration,
-      onComplete: () => {
-        // this.element.style.backgroundColor = "red";
-      },
+      duration: 0.5, // Thời gian zoom (giây)
+      scaleX: 1.5, // Giá trị scale theo chiều ngang
+      scaleY: 1.5, // Giá trị scale theo chiều dọc
+      ease: 'power2.easeInOut', // Kiểu easing
     });
-    gsap.to(this.element, { scaleX: 1, duration, delay: duration });
   }
 }
 
