@@ -27,8 +27,8 @@ function handleClick(e) {
   cardEntity.showContent();
   updateCurPicks(cardEntity, cardEl.dataset.id, cardEl.dataset.index);
   if (checkPairPicked()) {
+    updateHandleClick('remove');
     if (checkPairMatch()) {
-      updateHandleClick('remove');
       curPicks.forEach(cardData => {
         const cardEntity = cardData.cardEntity;
         cardEntity.element.style.zIndex = '1';
@@ -85,6 +85,7 @@ function hideCards() {
   setTimeout(() => {
     cardData1.cardEntity.hideContent();
     cardData2.cardEntity.hideContent();
+    updateHandleClick('add', [cardData1, cardData2])
   }, 2000);
 }
 
@@ -124,14 +125,14 @@ function renderCoins() {
   coinsLabel.y = 24;
   document.body.appendChild(coinsLabel.element);
 }
-function updateHandleClick(type) {
+function updateHandleClick(type, currentPicks = curPicks) {
   if (type === 'add') {
-    curPicks.forEach(cardData =>
+    currentPicks.forEach(cardData =>
       cardData.cardEntity.element.addEventListener('click', handleClick)
     );
   }
   if (type === 'remove') {
-    curPicks.forEach(cardData =>
+    currentPicks.forEach(cardData =>
       cardData.cardEntity.element.removeEventListener('click', handleClick)
     );
   }
