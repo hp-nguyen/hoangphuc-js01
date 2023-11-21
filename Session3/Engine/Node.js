@@ -65,7 +65,7 @@ export default class Node {
     const index = this.children.indexOf(entity);
     if (index > -1) {
       entity.parent = null;
-      this.children.splice(index, 1);
+      // this.children.splice(index, 1);
       entity.element.remove();
     }
   }

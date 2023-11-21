@@ -33,6 +33,9 @@ function handleClick(e) {
         const cardEntity = cardData.cardEntity;
         cardEntity.element.style.zIndex = '1';
         cardEntity.onMatch();
+        setTimeout(() => {
+          gameBoard.removeChild(cardEntity);
+        }, 3000);
       });
       pairsMatchedCount++;
       updateCoinAmount('up');
@@ -85,7 +88,7 @@ function hideCards() {
   setTimeout(() => {
     cardData1.cardEntity.hideContent();
     cardData2.cardEntity.hideContent();
-    updateHandleClick('add', [cardData1, cardData2])
+    updateHandleClick('add', [cardData1, cardData2]);
   }, 2000);
 }
 
