@@ -88,7 +88,7 @@ function hideCards() {
     cardData2.cardEntity.hideContent();
     updateHandleClick('add');
     resetCurPicks();
-  }, 1000);
+  }, 4000);
 }
 
 function checkWin() {
@@ -139,4 +139,4 @@ function updateHandleClick(type) {
     );
   }
 }
- export {initGame}
+ export {initGame, gameBoard}

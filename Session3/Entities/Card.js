@@ -27,13 +27,38 @@ class Card extends Node {
     this.addChild(cardContent);
   }
   showContent() {
-    this.cardCover.element.style.visibility = 'hidden';
+    const duration = 0.5;
+    gsap.to(this.element, {
+      scaleX: 0,
+      duration,
+      onComplete: () => {
+        this.cardCover.element.style.visibility = 'hidden';
+      },
+    });
+    gsap.to(this.element, { scaleX: 1, duration, delay: duration });
   }
   hideContent() {
-    this.cardCover.element.style.visibility = 'initial';
+    const duration = 0.5;
+    gsap.to(this.element, {
+      scaleX: 0,
+      duration,
+      onComplete: () => {
+        this.cardCover.element.style.visibility = 'initial';
+      },
+    });
+    gsap.to(this.element, { scaleX: 1, duration, delay: duration });
+    // this.cardCover.element.style.visibility = 'initial';
   }
   flip() {
-
+    const duration = 2;
+    gsap.to(this.element, {
+      scaleX: 0,
+      duration,
+      onComplete: () => {
+        // this.element.style.backgroundColor = "red";
+      },
+    });
+    gsap.to(this.element, { scaleX: 1, duration, delay: duration });
   }
 }
 
