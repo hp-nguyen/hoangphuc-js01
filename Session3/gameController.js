@@ -51,7 +51,6 @@ function handleClick(e) {
         }, 1000);
       }
       hideCards();
-      return;
     }
     resetCurPicks();
   }
@@ -86,8 +85,6 @@ function hideCards() {
   setTimeout(() => {
     cardData1.cardEntity.hideContent();
     cardData2.cardEntity.hideContent();
-    // updateHandleClick('add');
-    resetCurPicks();
   }, 2000);
 }
 
