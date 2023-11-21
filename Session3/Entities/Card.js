@@ -27,12 +27,13 @@ class Card extends Node {
     this.addChild(cardContent);
   }
   showContent() {
-    // console.log('click')
-    // console.log(this)
     this.cardCover.element.style.visibility = 'hidden';
   }
   hideContent() {
     this.cardCover.element.style.visibility = 'initial';
+  }
+  flip() {
+
   }
 }
 

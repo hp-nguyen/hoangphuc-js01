@@ -8,9 +8,6 @@ export default class Sprite extends Node {
     const elm = new Image();
     elm.src = imageSrc;
     elm.style.maxWidth = '100%';
-    elm.onload = () => {
-      return elm
-    }
     return elm;
   }
 }
