@@ -50,12 +50,16 @@ class Card extends Node {
     });
     gsap.to(this.element, { scaleX: 1, duration, delay });
   }
-  zoom() {
+  onMatch() {
     gsap.to(this.element, {
-      duration: 0.5, // Thời gian zoom (giây)
-      scaleX: 1.5, // Giá trị scale theo chiều ngang
-      scaleY: 1.5, // Giá trị scale theo chiều dọc
-      ease: 'power2.easeInOut', // Kiểu easing
+      duration: 2,
+      delay: 1,
+      scaleX: 1.5,
+      scaleY: 1.5,
+      ease: 'power2.easeInOut',
+      onComplete: () => {
+        this.element.style.display = 'none';
+      },
     });
   }
 }

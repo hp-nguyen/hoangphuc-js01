@@ -30,28 +30,21 @@ function handleClick(e) {
     updateHandleClick('remove');
     if (checkPairMatch()) {
       curPicks.forEach(cardData => {
-        const cardEntity = cardData.cardEntity
-        cardEntity.element.style.zIndex = '1'
-        cardEntity.zoom()
-        setTimeout(() => {
-          cardEntity.element.style.display = 'none';
-        }, 2000);
+        const cardEntity = cardData.cardEntity;
+        cardEntity.element.style.zIndex = '1';
+        cardEntity.onMatch();
       });
       pairsMatchedCount++;
       updateCoinAmount('up');
       coinsLabel.setText(`Coins: ${coins}`);
       if (checkWin()) {
-        console.log('WIN');
-        // messageElement.style.color = 'yellow';
-        // messageElement.innerText = 'You win!!!';
+        alert('YOU WIN !!!');
       }
     } else {
       updateCoinAmount('down');
       coinsLabel.setText(`Coins: ${coins}`);
       if (checkLose()) {
-        console.log('Lose');
-        // messageElement.style.color = 'red';
-        // messageElement.innerText = 'You lose :(((';
+        alert('YOU LOSE :(');
       }
       hideCards();
       return;
@@ -142,4 +135,4 @@ function updateHandleClick(type) {
     );
   }
 }
- export {initGame, gameBoard}
+export { initGame, gameBoard };
