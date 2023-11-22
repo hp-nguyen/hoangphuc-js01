@@ -7,6 +7,7 @@ const curPicks = [];
 let pairsMatchedCount = 0;
 let coins = 5000;
 let isPlaying = true;
+let isDisableBoard = false;
 const gameBoard = new GameBoard(gameItems);
 const coinsLabel = new Label(`Coins: ${coins}`);
 
@@ -21,12 +22,13 @@ function initGame() {
   renderCoins();
 }
 function handleClick(e) {
-  if (!isPlaying) return;
+  if (!isPlaying || isDisableBoard) return;
   const cardEl = e.currentTarget;
   const cardEntity = gameBoard.children[cardEl.dataset.index];
   cardEntity.showContent();
   updateCurPicks(cardEntity, cardEl.dataset.id, cardEl.dataset.index);
   if (checkPairPicked()) {
+    isDisableBoard = true;
     updateHandleClick('remove');
     if (checkPairMatch()) {
       curPicks.forEach(cardData => {
@@ -35,6 +37,7 @@ function handleClick(e) {
         cardEntity.onMatch();
         setTimeout(() => {
           gameBoard.removeChild(cardEntity);
+          isDisableBoard = false;
         }, 3000);
       });
       pairsMatchedCount++;
@@ -89,6 +92,7 @@ function hideCards() {
     cardData1.cardEntity.hideContent();
     cardData2.cardEntity.hideContent();
     updateHandleClick('add', [cardData1, cardData2]);
+    isDisableBoard = false;
   }, 2000);
 }
 
