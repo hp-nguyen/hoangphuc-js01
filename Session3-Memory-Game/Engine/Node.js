@@ -49,7 +49,6 @@ export default class Node {
     this.y += translationDistanceY;
   }
   centerInParent() {
-    console.log(this.parent)
     const translationDistanceX = (this.parent.element.innerWidth - this._size.width) / 2;
     const translationDistanceY = (this.parent.elementt.innerHeight - this._size.height) / 2;
     

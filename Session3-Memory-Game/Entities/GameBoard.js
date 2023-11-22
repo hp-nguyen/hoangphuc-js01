@@ -7,6 +7,7 @@ class GameBoard extends Node {
     this.gameItems = gameItems;
   }
   render() {
+    this.element.innerHTML = ''
     const body = document.body;
     let curRow = -1;
     let curCol = 0;
