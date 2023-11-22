@@ -7,19 +7,22 @@ class GameBoard extends Node {
     this.gameItems = gameItems;
   }
   render() {
-    this.element.innerHTML = ''
     const body = document.body;
-    let curRow = -1;
-    let curCol = 0;
-    const gap = 12;
-    for (let index = 0; index < this.gameItems.length; index++) {
-      const newCard = new Card(this.gameItems[index].src, this.gameItems[index].id, index);
-      newCard.setSize(100, 100);
-      curRow = index % 5 === 0 ? curRow + 1 : curRow;
-      curCol = index % 5;
-      // newCard.x = curCol * (newCard._size.width + gap);
-      // newCard.y = curRow * (newCard._size.height + gap);
-      this.addChild(newCard);
+    const gridData = {
+      rowNum: 4,
+      colNum: 5,
+      gap: 12,
+    };
+    let index = 0;
+    for (let row = 0; row < gridData.rowNum; row++) {
+      for (let col = 0; col < gridData.colNum; col++) {
+        const newCard = new Card(this.gameItems[index].src, this.gameItems[index].id, index);
+        newCard.setSize(100, 100);
+        // newCard.x = col * (newCard._size.width + gridData.gap);
+        // newCard.y = row * (newCard._size.height + gridData.gap);
+        this.addChild(newCard);
+        index++;
+      }
     }
     body.appendChild(this.element);
     this.centerInWindow();

@@ -11,20 +11,6 @@ const baseItems = [
   { id: 10, src: './assets/10.png' },
 ];
 const copyItems = baseItems.map(item => ({ ...item }));
-let gameItems = copyItems.concat(copyItems);
-// shuffleGameItems()
+const gameItems = copyItems.concat(copyItems);
 
-function shuffleGameItems() {
-  const temp = [];
-  let currentLength = gameItems.length;
-  while (currentLength > 0) {
-    const currentIndex = randomNum(0, currentLength - 1);
-    temp.push(gameItems.splice(currentIndex, 1)[0]);
-    currentLength = gameItems.length;
-  }
-  gameItems = temp;
-}
-function randomNum(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
 export default gameItems

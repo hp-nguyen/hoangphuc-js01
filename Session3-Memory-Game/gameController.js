@@ -3,6 +3,7 @@ import Button from './Entities/Button.js';
 import GameBoard from './Entities/GameBoard.js';
 import GameMessage from './Entities/GameMessage.js';
 import { shuffleEntities } from './tween.js';
+import { shuffleGameItems } from './utils.js';
 
 class GameController {
   constructor(gameItems) {
@@ -26,6 +27,7 @@ class GameController {
       this.gameBoard.element.remove();
     }
     this.gameMessage.hideContent();
+    // this.gameItems = shuffleGameItems(this.gameItems)
     this.gameBoard = new GameBoard(this.gameItems);
     this.gameBoard.setSize(548, 436);
     this.gameBoard.render();
@@ -92,16 +94,18 @@ class GameController {
     return false;
   }
   updateCoinAmount(type) {
-    setTimeout(() => {
-      if (type === 'up') {
-        this.coins += 1000;
+    if (type === 'up') {
+      this.coins += 1000;
+      setTimeout(() => {
         this.coinsLabel.setText(`Coins: ${this.coins}`);
-      }
-      if (type === 'down') {
-        this.coins -= 500;
+      }, 1000);
+    }
+    if (type === 'down') {
+      this.coins -= 500;
+      setTimeout(() => {
         this.coinsLabel.setText(`Coins: ${this.coins}`);
-      }
-    }, 1000);
+      }, 1000);
+    }
   }
   checkWin() {
     if (this.pairsMatchedCount === this.totalPairs) {
@@ -119,10 +123,11 @@ class GameController {
     if (this.coins === 0) {
       this.isPlaying = false;
       setTimeout(() => {
+        this.gameBoard.element.innerHTML = '';
         this.gameMessage.setText('YOU LOSE 😢😢😢');
         this.gameMessage.element.style.color = 'red';
         this.gameMessage.showContent();
-      }, 1000);
+      }, 3000);
       return true;
     }
     return false;
