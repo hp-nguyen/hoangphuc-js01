@@ -22,7 +22,7 @@ class GameController {
     this.renderGameMessage();
   }
   initGame() {
-    if (this.gameBoard) {
+    if (this.gameBoard.element) {
       this.gameBoard.element.remove();
     }
     this.gameMessage.hideContent();
@@ -92,14 +92,16 @@ class GameController {
     return false;
   }
   updateCoinAmount(type) {
-    if (type === 'up') {
-      this.coins += 1000;
-      this.coinsLabel.setText(`Coins: ${this.coins}`);
-    }
-    if (type === 'down') {
-      this.coins -= 500;
-      this.coinsLabel.setText(`Coins: ${this.coins}`);
-    }
+    setTimeout(() => {
+      if (type === 'up') {
+        this.coins += 1000;
+        this.coinsLabel.setText(`Coins: ${this.coins}`);
+      }
+      if (type === 'down') {
+        this.coins -= 500;
+        this.coinsLabel.setText(`Coins: ${this.coins}`);
+      }
+    }, 1000);
   }
   checkWin() {
     if (this.pairsMatchedCount === this.totalPairs) {
@@ -117,7 +119,7 @@ class GameController {
     if (this.coins === 0) {
       this.isPlaying = false;
       setTimeout(() => {
-        this.gameMessage.setText('YOU LOSE 🥲🥲🥲');
+        this.gameMessage.setText('YOU LOSE 😢😢😢');
         this.gameMessage.element.style.color = 'red';
         this.gameMessage.showContent();
       }, 1000);
@@ -150,9 +152,12 @@ class GameController {
     const body = document.body;
     this.resetBtn.x = 24;
     this.resetBtn.y = 80;
-    Object.assign(this.resetBtn.element.style, {
-      fontSize: '1.2rem',
+    this.resetBtn.setStyle({
+      fontSize: '1.3rem',
+      fontFamily: 'inherit',
       borderRadius: '6px',
+      cursor: 'pointer',
+      border: 'none',
     });
     body.appendChild(this.resetBtn.element);
     this.resetBtn.element.addEventListener('click', this.initGame.bind(this));
@@ -160,7 +165,7 @@ class GameController {
   renderGameMessage() {
     const body = document.body;
     this.gameMessage.setSize(548, 60);
-    Object.assign(this.gameMessage.element.style, {
+    this.gameMessage.setStyle({
       fontSize: '3rem',
       fontWeight: 'bold',
       textAlign: 'center',
@@ -170,7 +175,6 @@ class GameController {
     });
     this.gameMessage.centerInWindow();
     this.gameMessage.y = 100;
-
     body.appendChild(this.gameMessage.element);
   }
   dealCards() {
