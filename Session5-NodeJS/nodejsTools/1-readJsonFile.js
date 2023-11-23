@@ -1,5 +1,4 @@
 const fs = require('fs');
-const [nodePath, curJsFilePath, filePath] = process.argv;
 
 function readJsonFile(filePath) {
   const jsonContent = fs.readFileSync(filePath);
