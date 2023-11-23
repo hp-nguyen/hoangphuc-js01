@@ -1,14 +1,15 @@
 const fs = require('fs');
 const path = require('path');
-const directoryPath = '/Users/user/Desktop/JS01/Session5-NodeJS/basics';
-const imgExtensions = ['.jpg', '.jpeg', '.png', '.gif'];
+// const directoryPath = '/Users/user/Desktop/JS01/Session5-NodeJS/basics';
+// const imgExtensions = ['.jpg', '.jpeg', '.png', '.gif'];
+// console.log(searchImages(directoryPath, imgExtensions))
 
-function searchImages(directoryPath) {
+function searchImages(directoryPath, imgExtensions) {
   const result = [];
   function checkItem(itemPath) {
     const items = fs.readdirSync(itemPath);
     items.forEach(item => {
-      const curItemPath = path.resolve(path.join(itemPath, item));
+      const curItemPath = path.join(itemPath, item);
       const stats = fs.statSync(curItemPath);
       const itemExt = path.extname(curItemPath);
       if (stats.isDirectory(item)) {
@@ -21,3 +22,4 @@ function searchImages(directoryPath) {
   checkItem(directoryPath);
   return result;
 }
+module.exports = searchImages
