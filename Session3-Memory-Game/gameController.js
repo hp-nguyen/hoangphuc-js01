@@ -62,7 +62,7 @@ class GameController {
         setTimeout(() => {
           this.gameBoard.removeChild(cardEntity);
           this.isDisableBoard = false;
-        }, 3000);
+        }, 2200);
         this.pairsMatchedCount++;
         this.updateCoinAmount('up');
         this.checkWin();
@@ -114,7 +114,7 @@ class GameController {
         this.gameMessage.setText('YOU WIN 🥳🥳🥳');
         this.gameMessage.element.style.color = 'yellow';
         this.gameMessage.showContent();
-      }, 3000);
+      }, 2000);
       return true;
     }
     return false;

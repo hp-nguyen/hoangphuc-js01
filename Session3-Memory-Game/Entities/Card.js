@@ -61,6 +61,11 @@ class Card extends Node {
         this.element.style.display = 'none';
       },
     });
+    gsap.to(this.element, {
+      duration: 0.3,
+      delay: 2,
+      opacity: 0,
+    });
   }
 }
 
