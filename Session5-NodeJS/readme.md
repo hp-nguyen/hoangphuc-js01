@@ -1,7 +1,7 @@
 NODEJS TOOL ENO JS COURSE
 Mentor: MasterKame
 
-# Run npm -i to install node_modules
+# Run <npm i> to install node_modules
 
 # 1. Function readJsonFile(filePath)
 - Read content of a JSON file
