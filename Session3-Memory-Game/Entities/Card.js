@@ -50,19 +50,16 @@ class Card extends Node {
     });
     gsap.to(this.element, { scaleX: 1, duration, delay });
   }
-  onMatch() {
+  fadeCard() {
     gsap.to(this.element, {
       duration: 2,
       delay: 1,
       scaleX: 1.5,
       scaleY: 1.5,
       ease: 'power2.easeInOut',
-      onComplete: () => {
-        this.element.style.display = 'none';
-      },
     });
     gsap.to(this.element, {
-      duration: 0.3,
+      duration: 0.4,
       delay: 2,
       opacity: 0,
     });

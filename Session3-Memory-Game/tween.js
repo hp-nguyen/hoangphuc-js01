@@ -18,7 +18,7 @@ function shuffleEntities(gameBoard, entities) {
         x: xCenter,
         y: yCenter,
         ease: 'power2.inOut',
-        delay: index * 0.1,
+        delay: index * 0.06,
         opacity: 1,
       }
     );
@@ -26,7 +26,7 @@ function shuffleEntities(gameBoard, entities) {
 
   setTimeout(() => {
     dealCards();
-  }, 2000);
+  }, 1100);
 
   function dealCards() {
     const positions = [];

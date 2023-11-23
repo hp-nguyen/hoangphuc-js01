@@ -43,7 +43,7 @@ class GameController {
     this.dealCards();
     setTimeout(() => {
       this.isPlaying = true;
-    }, 4500);
+    }, 3500);
   }
   handleClickCard(e) {
     if (!this.isPlaying || this.isDisableBoard) return;
@@ -54,15 +54,7 @@ class GameController {
     if (this.checkPairPicked()) {
       this.isDisableBoard = true;
       if (this.checkPairMatch()) {
-        this.curPicks.forEach(cardData => {
-          const cardEntity = cardData.cardEntity;
-          cardEntity.element.style.zIndex = '1';
-          cardEntity.onMatch();
-        });
-        setTimeout(() => {
-          this.gameBoard.removeChild(cardEntity);
-          this.isDisableBoard = false;
-        }, 2200);
+        this.hideMatchedPair();
         this.pairsMatchedCount++;
         this.updateCoinAmount('up');
         this.checkWin();
@@ -114,7 +106,7 @@ class GameController {
         this.gameMessage.setText('YOU WIN 🥳🥳🥳');
         this.gameMessage.element.style.color = 'yellow';
         this.gameMessage.showContent();
-      }, 2000);
+      }, 2200);
       return true;
     }
     return false;
@@ -139,6 +131,18 @@ class GameController {
       cardData2.cardEntity.hideContent();
       this.isDisableBoard = false;
     }, 2000);
+  }
+  hideMatchedPair() {
+    const [card1, card2] = this.curPicks;
+    card1.cardEntity.setStyle({zIndex: '1'})
+    card2.cardEntity.setStyle({zIndex: '1'})
+    card1.cardEntity.fadeCard();
+    card2.cardEntity.fadeCard();
+    setTimeout(() => {
+      this.gameBoard.removeChild(card1.cardEntity);
+      this.gameBoard.removeChild(card2.cardEntity);
+      this.isDisableBoard = false;
+    }, 2200);
   }
   resetCurPicks() {
     this.curPicks.length = 0;
