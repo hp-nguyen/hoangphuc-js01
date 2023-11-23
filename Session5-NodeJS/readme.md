@@ -1,9 +1,10 @@
-NODEJS TOOL ENO JS COURSE
+# NODEJS TOOL ENO JS COURSE
 Mentor: MasterKame
+Author: hp-nguyen
 
-# Run <npm i> to install node_modules
+## Run "npm i" to install node_modules
 
-# 1. Function readJsonFile(filePath)
+## 1. Function readJsonFile(filePath)
 - Read content of a JSON file
 - Arguments:
   - filePath: absolute path of JSON file needs to read
@@ -11,7 +12,7 @@ Mentor: MasterKame
 - Ex:
 readJsonFile('/Users/user/Desktop/JS01/Session5-NodeJS/test/myJson.json')
 
-# 2. Function writeToJsonFile(filePath, newData)
+## 2. Function writeToJsonFile(filePath, newData)
 - Write new data to a JSON file
 - Arguments:
   - filePath: absolute path of JSON file needs to write
@@ -22,7 +23,7 @@ writeToJsonFile('/Users/user/Desktop/JS01/Session5-NodeJS/test/myJson.json',
 {newProp: 'New value'}
 );
 
-# 3. Function searchImages(directoryPath, imgExtensions)
+## 3. Function searchImages(directoryPath, imgExtensions)
 
 - Find all path of images within folder corresponding to specific file extensions.
 - Arguments:
@@ -32,7 +33,7 @@ writeToJsonFile('/Users/user/Desktop/JS01/Session5-NodeJS/test/myJson.json',
 - Ex:
 searchImages('/Users/user/Desktop/JS01/Session5-NodeJS/basics', ['.jpg', '.jpeg', '.png', '.gif']);
 
-# 4. Function copyImages(srcDirPath, targetDirPath, imgExtensions)
+## 4. Function copyImages(srcDirPath, targetDirPath, imgExtensions)
 - Copy all images from source folder to target folder corresponding to specific file extensions
 - Arguments:
   - srcDirPath: absolute path of source folder
@@ -42,7 +43,7 @@ searchImages('/Users/user/Desktop/JS01/Session5-NodeJS/basics', ['.jpg', '.jpeg'
 - Ex: 
 copyImages('/Users/user/Desktop/JS01/Session5-NodeJS/basics', '/Users/user/Desktop/JS01/Session5-NodeJS/test/copiedImgs', ['.png'])
 
-# 5. Function resizeImages(srcDirPath, targetDirPath, imgExtensions)
+## 5. Function resizeImages(srcDirPath, targetDirPath, imgExtensions)
 - Resize all images from source folder to target folder corresponding to specific file extensions
 - Arguments:
   - srcDirPath: absolute path of source folder
@@ -55,7 +56,7 @@ resizeImages(
   '/Users/user/Desktop/JS01/Session5-NodeJS/test/resizedImgs',
   ['.png']);
 
-# 6. Function importScripts(srcDirPath, targetDirPath, scriptExtensions)
+## 6. Function importScripts(srcDirPath, targetDirPath, scriptExtensions)
 - Create an index.js file in target folder and import all scripts from source folder to index.js
 - Arguments:
   - srcDirPath: absolute path of source folder
