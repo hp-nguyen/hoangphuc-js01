@@ -49,6 +49,7 @@ class GameController {
     if (!this.isPlaying || this.isDisableBoard) return;
     const cardEl = e.currentTarget;
     const cardEntity = this.gameBoard.children[cardEl.dataset.index];
+    if (cardEntity.isPicking) return;
     cardEntity.showContent();
     this.updateCurPicks(cardEntity, cardEl.dataset.id, cardEl.dataset.index);
     if (this.checkPairPicked()) {
@@ -134,8 +135,8 @@ class GameController {
   }
   hideMatchedPair() {
     const [card1, card2] = this.curPicks;
-    card1.cardEntity.setStyle({zIndex: '1'})
-    card2.cardEntity.setStyle({zIndex: '1'})
+    card1.cardEntity.setStyle({ zIndex: '1' });
+    card2.cardEntity.setStyle({ zIndex: '1' });
     card1.cardEntity.fadeCard();
     card2.cardEntity.fadeCard();
     setTimeout(() => {

@@ -1,5 +1,4 @@
 export default class Node {
-  // entity
   constructor() {
     this._x = 0;
     this._y = 0;
@@ -64,7 +63,6 @@ export default class Node {
     const index = this.children.indexOf(entity);
     if (index > -1) {
       entity.parent = null;
-      // this.children.splice(index, 1);
       entity.element.remove();
     }
   }

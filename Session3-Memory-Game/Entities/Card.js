@@ -6,6 +6,7 @@ class Card extends Node {
     super();
     this.element.dataset.id = id;
     this.element.dataset.index = index;
+    this.isPicking = false;
     this.cardContent = this.createCardContent(imgSrc);
     this.cardCover = this.createCardCover(cardCoverStyles, index);
     this.setStyle({
@@ -27,6 +28,7 @@ class Card extends Node {
     this.addChild(cardContent);
   }
   showContent() {
+    this.isPicking = true;
     const duration = 0.5;
     const delay = 0.5;
     gsap.to(this.element, {
@@ -49,13 +51,13 @@ class Card extends Node {
       },
     });
     gsap.to(this.element, { scaleX: 1, duration, delay });
+    this.isPicking = false;
   }
   fadeCard() {
     gsap.to(this.element, {
       duration: 2,
       delay: 1,
-      scaleX: 1.5,
-      scaleY: 1.5,
+      scale: 1.5,
       ease: 'power2.easeInOut',
     });
     gsap.to(this.element, {
