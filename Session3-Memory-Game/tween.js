@@ -46,7 +46,7 @@ function shuffleEntities(gameBoard, entities) {
           x: xCenter,
           y: yCenter,
         },
-        { duration: 1, x, y, ease: 'power2.inOut', delay: index * 0.1, rotate: 360 }
+        { duration: 1, x, y, ease: Elastic.easeOut, delay: index * 0.1 }
       );
     });
   }
