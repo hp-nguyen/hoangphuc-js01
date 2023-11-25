@@ -9,7 +9,7 @@ class Button extends Node {
   _createElement() {
     const elm = document.createElement('button');
     Object.assign(elm.style, {
-      position: 'relative',
+      position: 'absolute',
       padding: '12px'
     })
     return elm;
